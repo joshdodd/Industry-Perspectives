@@ -158,7 +158,8 @@ if($welcome){
 				</div>  -->
 
 		 		<h1>Welcome to Industry Perspectives!</h1>
-				<p><strong>The Association for Professionals in Infection Control and Epidemiology (APIC) created <em>Industry Perspectives</em> to help supplement your clinical knowledge as an infection preventionist (IP) with best practices and evidence-based information related to infection prevention products, solutions, and services.</strong></p>
+				<p><strong>The Association for Professionals in Infection Control and Epidemiology (APIC) created <em>Industry Perspectives</em>  because infection prevention and control is everybody’s business. Explore this site and find the latest information on products, research, and education for infection prevention and control coming out of industry.
+</strong></p>
 <p>&nbsp;</p>
 		 
 
