@@ -157,7 +157,7 @@ if($welcome){
 
 				</div>  -->
 
-		 		<h1>Welcome to Industry Perspectives!</h1>
+		 		<h1>Welcome to Industry Perspectives</h1>
 				<p><strong>The Association for Professionals in Infection Control and Epidemiology (APIC) created <em>Industry Perspectives</em>  because infection prevention and control is everybody’s business. Explore this site and find the latest information on products, research, and education for infection prevention and control coming out of industry.
 </strong></p>
 <p>&nbsp;</p>
