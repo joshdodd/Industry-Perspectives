@@ -52,11 +52,11 @@ $GLOBALS['lineColors'][$c++] = 'f0da1b';
 $GLOBALS['queryIDs'][$d++] = 9;
 
 // Care Settings
-$GLOBALS['sectionsFull'][$i++] = 'Care Settings';
-$GLOBALS['sectionIDs'][$a++] = 'care';
-$GLOBALS['iconColors'][$b++] = 'f37452';
-$GLOBALS['lineColors'][$c++] = 'f15b61';
-$GLOBALS['queryIDs'][$d++] = 2;
+// $GLOBALS['sectionsFull'][$i++] = 'Care Settings';
+// $GLOBALS['sectionIDs'][$a++] = 'care';
+// $GLOBALS['iconColors'][$b++] = 'f37452';
+// $GLOBALS['lineColors'][$c++] = 'f15b61';
+// $GLOBALS['queryIDs'][$d++] = 2;
 
 // Decontamination, Disinfection & Sterilization
 $GLOBALS['sectionsFull'][$i++] = 'Decontamination, Disinfection and Sterilization';
