@@ -236,138 +236,124 @@ wp_reset_postdata();
 				if($section == get_field('topic_id')){$queryNum = $GLOBALS['queryIDs'][$key];}
 			}		
 			
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			
 			$perpage = 8;
 			
 			$args = array(
-				'cat'			=> $cat_id,
+				'cat'				=> $cat_id,
 				'posts_per_page'	=> $perpage,
-				'offset'			=> $perpage*($page-1),
 				'order'				=> 'DESC',
 				'orderby'			=> 'meta_value',
 				'meta_key'			=> 'cfdate',
+				'paged'				=> $paged,
 				'post__not_in' 		=> $GLOBALS['shown_stories']
 			);
 			
 			//$my_query1 = new WP_Query($args);							
-			$posts = get_posts($args);
+			$posts = new WP_Query( $args );
 			
-			foreach($posts as $key=>$post){
-				 setup_postdata($post);
+			if ( $posts->have_posts() ){
+				while ( $posts->have_posts() ) : $posts->the_post(); 
 							
-				// check if story was already used
-				if(!in_array($post->ID, $GLOBALS['shown_stories'])){
-				
-					// get full topic name
-					$field = get_field_object('field_579f7f6350d36');
-					$value = get_field('topic_id');
-					$topicFull = $field['choices'][$value];
+					// check if story was already used
+					if(!in_array($post->ID, $GLOBALS['shown_stories'])){
 					
-					// get id number for colors
-					foreach($GLOBALS['sectionIDs'] as $key2=>$section){
-						if($section == get_field('topic_id')){$topicNum = $key2;}
-					}
-					
-					// format date
-					$the_date = strtotime(get_field('cfdate'));
-					$the_date = date('n.j.y', $the_date);
-
-					$thumb_image_arr = get_field('thumbnail_image');
-					$thumb_image     = $thumb_image_arr['url'];
-					$thumb_image_alt = $thumb_image_arr['alt'];
-					
-					print '<div class="story-box">';
-					print '<div class="story-thumb" style="background-image: url(' . $thumb_image  . '); border-color:#' . $GLOBALS['lineColors'][$topicNum] . '">';
-					print '<div class="hover-dark"></div>';
-					print '<img src="' . $GLOBALS['path'] . 'images/tier-story-spacer.png" class="spacer">';
-					print '</div>';
-					print '<div class="story-text">';
-					print '<time>' . $the_date . ' <span class="vline-div">|</span> ' . $topicFull . '</time>';
-					print '<h4><a href="' . get_permalink()  . '">' . get_the_title() . '</a></h4>';
-					
-					// get excerpt
-					if(get_field('before_body_text') != ''){
-						$tmpexc = get_field('before_body_text');
-						$words = explode(' ', $tmpexc, 21);
+						// get full topic name
+						$field = get_field_object('field_579f7f6350d36');
+						$value = get_field('topic_id');
+						$topicFull = $field['choices'][$value];
 						
-						 if (count($words)> 20) {
-						 	array_pop($words);
-						 	array_push($words, '...');
-						 	$text = implode(' ', $words);
-						 }
-						 
-						print '<p>' . $text . '</p>';
-					} else {
-						print '<p>' . get_the_excerpt() . '</p>';
+						// get id number for colors
+						foreach($GLOBALS['sectionIDs'] as $key2=>$section){
+							if($section == get_field('topic_id')){$topicNum = $key2;}
+						}
+						
+						// format date
+						$the_date = strtotime(get_field('cfdate'));
+						$the_date = date('n.j.y', $the_date);
+
+						$thumb_image_arr = get_field('thumbnail_image');
+						$thumb_image     = $thumb_image_arr['url'];
+						$thumb_image_alt = $thumb_image_arr['alt'];
+						
+						print '<div class="story-box">';
+						print '<div class="story-thumb" style="background-image: url(' . $thumb_image  . '); border-color:#' . $GLOBALS['lineColors'][$topicNum] . '">';
+						print '<div class="hover-dark"></div>';
+						print '<img src="' . $GLOBALS['path'] . 'images/tier-story-spacer.png" class="spacer">';
+						print '</div>';
+						print '<div class="story-text">';
+						print '<time>' . $the_date . ' <span class="vline-div">|</span> ' . $topicFull . '</time>';
+						print '<h4><a href="' . get_permalink()  . '">' . get_the_title() . '</a></h4>';
+						
+						// get excerpt
+						if(get_field('before_body_text') != ''){
+							$tmpexc = get_field('before_body_text');
+							$words = explode(' ', $tmpexc, 21);
+							
+							 if (count($words)> 20) {
+							 	array_pop($words);
+							 	array_push($words, '...');
+							 	$text = implode(' ', $words);
+							 }
+							 
+							print '<p>' . $text . '</p>';
+						} else {
+							print '<p>' . get_the_excerpt() . '</p>';
+						}
+						
+						
+						print '</div>';
+						print '</div>';
+						
 					}
-					
-					
-					print '</div>';
-					print '</div>';
-					
-				}
-			}
 			
-			wp_reset_postdata();
-			
-			if(count($posts) == 0){
+				endwhile;
+
+				?>
+
+				<div class="pagination">
+		        	
+			    <?php 
+			        $page_links =  paginate_links( array(
+			            'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+			            'total'        => $posts->max_num_pages,
+			            'current'      => max( 1, get_query_var( 'paged' ) ),
+			            'format'       => '?paged=%#%',
+			            'show_all'     =>  true,
+			            'type'         => 'array',
+			            'end_size'     => 2,
+			            'mid_size'     => 1,
+			            'prev_next'    => true,
+			            'prev_text'    => sprintf( '<i></i> %1$s', __( '     ', 'text-domain' ) ),
+			            'next_text'    => sprintf( '%1$s <i></i>', __( '   >  ', 'text-domain' ) ),
+			            'add_args'     => false,
+			            'add_fragment' => '',
+			        ) );
+
+			         if( $page_links ) {
+					     echo '<nav class="pag-nav"><ul>';
+					     foreach($page_links as $page_link ) {
+					          echo "<li>".$page_link."</li>";
+					     }
+					     echo '</ul></nav>';
+					 }
+
+
+
+			    ?>
+			    	</ul></nav>
+				</div>
+
+				<?php wp_reset_postdata(); 
+			}	
+			else{
 				print '<h4 style="color:#1373ba; font-size:20px;">Content coming soon. Be sure to check back.</h4>';
 			}
 			
 			?>
 			
-						
-			
-			
-			
-			<!--! BEGIN PAGINATION -->
-			
-			<?php
-				
-			// figure out total posts
-			
-			$args = array(
-				'category'			=> $queryNum,
-				'posts_per_page'	=> -1,
-				'post__not_in' 		=> $GLOBALS['shown_stories']
-			);
-			$totposts = get_posts($args);
-				
-			$pag = '';
-			$tot = count($totposts);
-			$totPages = ceil($tot/$perpage);
-						
-			for($i=1;$i<$totPages+1;$i++){
-				if($i == $page){
-					$pag .=  '<li class="active"><a href="#">' . $page . '</a></li>';
-				} else {
-					$pag .=  '<li><a href="' . get_site_url() . '/' . $post->post_name . '/' . $i . '">' . $i . '</a></li>';
-				}
-			}
-			
-			if($totPages > 1){
-				print '<div class="pagination">';
-				print '<nav class="pag-nav"><ul>';
-				
-				if($page > 1){
-					print '<li><a href="' . get_site_url() . '/' . $post->post_name . '/' . ($page-1) . '"><span class="icon-angle-left arr left"></span></a></li>';					
-				}
-				
-				print $pag;
-				
-				if($page < $totPages){
-					print '<li><a href="' . get_site_url() . '/' . $post->post_name . '/' . ($page+1) . '"><span class="icon-angle-right arr right"></span></a></li>';
-				}
-				
-				print '</ul></nav>';
-				print '</div>';	
-			}
-			
-			?>
-			
-			<!-- END PAGINATION -->
-
-			
-			
+ 	
 		
 		
 		</div>

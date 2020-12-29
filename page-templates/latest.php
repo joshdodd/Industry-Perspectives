@@ -7,10 +7,7 @@ Template Name: Single Column Stories
 get_header(); 
 
 ?>
-
-
-
-
+ 
 
 <!--! BEGIN HEADER -->
 
@@ -44,47 +41,38 @@ get_header();
 		<div class="col left stories-grid">
 			
 			<?php		
+
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			
 			$perpage = 8;
+
+			$cat_id = $_GET['topic'];
 			
 			$args = array(
 				'posts_per_page'	=> $perpage,
-				'offset'			=> $perpage*($page-1),
+				'paged' 			=> $paged,
 				'orderby'			=> 'meta_value',
-				'meta_key'			=> 'cfdate'
+				'meta_key'			=> 'cfdate',
+				'cat'				=> $cat_id,
 			);
 			
 			// add categories to query
 			$in_cats = array();
 			$newqstring = '';
-			
-			if($GLOBALS['formattedName'] == 'expert-qas'){				
-				$in_cats[] = get_cat_ID('Expert QA');
-			}
-			
-			if(isset($_GET['topic'])){
-				$in_cats[] = $_GET['topic'];
-				$newqstring .= '?topic='.$_GET['topic'];
-			}
+ 
 			
 			if(isset($_GET['order']) && $_GET['order'] == 'old'){
 				$args['order'] = 'ASC';
 			} else {
 				$args['order'] = 'DESC';
 			}
+ 
+ 
+			$posts = new WP_Query( $args );
 
-			if(sizeof($in_cats) > 0){
-				$args['category'] = $in_cats;
-			}					
-										
-			$posts = get_posts($args);
+			if ( $posts->have_posts() ) :
+				while ( $posts->have_posts() ) : $posts->the_post(); 
 
-			foreach($posts as $key=>$post){
-				 setup_postdata($post);
-							
-				// check if story was already used
-				if(!in_array($post->ID, $GLOBALS['shown_stories'])){
-				
 					// get full topic name
 					$field = get_field_object('field_579f7f6350d36');
 					$value = get_field('topic_id');
@@ -134,68 +122,55 @@ get_header();
 					
 					print '</div></div>';
 					print '</div>';
-					
-				}
-			}
-			
-			wp_reset_postdata();
-			
-			?>
-						
-					
-			
-			<!--! BEGIN PAGINATION -->
-			
-			<?php
-				
-			// figure out total posts
-			
-			$args = array(
-				'posts_per_page'	=> -1,
-				'post__not_in' 		=> $GLOBALS['shown_stories']
-			);
-			
-			if(sizeof($in_cats) > 0){
-				$args['category'] = $in_cats;
-			}	
-			$totposts = get_posts($args);
-				
-			$pag = '';
-			$tot = count($totposts);
-			$totPages = ceil($tot/$perpage);
-						
-			for($i=1;$i<$totPages+1;$i++){
-				if($i == $page){
-					$pag .=  '<li class="active"><a href="#">' . $page . '</a></li>';
-				} else {
-					$pag .=  '<li><a href="' . get_site_url() . '/' . $post->post_name . '/' . $i . '/' . $newqstring . '">' . $i . '</a></li>';
-				}
-			}
-			
-			if($totPages > 1){
-				print '<div class="pagination">';
-				print '<nav class="pag-nav"><ul>';
-				
-				if($page > 1){
-					print '<li><a href="' . get_site_url() . '/' . $post->post_name . '/' . ($page-1) . '/' . $newqstring . '"><span class="icon-angle-left arr left"></span></a></li>';					
-				}
-				
-				print $pag;
-				
-				if($page < $totPages){
-					print '<li><a href="' . get_site_url() . '/' . $post->post_name . '/' . ($page+1) . '/' . $newqstring . '"><span class="icon-angle-right arr right"></span></a></li>';
-				}
-				
-				print '</ul></nav>';
-				print '</div>';	
-			}
-			
-			?>
-			
-			<!-- END PAGINATION -->
 
+
+
+				endwhile;
+
+				?>
+				
+		        <div class="pagination">
+		        	
+			    <?php 
+			        $page_links =  paginate_links( array(
+			            'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+			            'total'        => $posts->max_num_pages,
+			            'current'      => max( 1, get_query_var( 'paged' ) ),
+			            'format'       => '?paged=%#%',
+			            'show_all'     =>  true,
+			            'type'         => 'array',
+			            'end_size'     => 2,
+			            'mid_size'     => 1,
+			            'prev_next'    => true,
+			            'prev_text'    => sprintf( '<i></i> %1$s', __( '     ', 'text-domain' ) ),
+			            'next_text'    => sprintf( '%1$s <i></i>', __( '   >  ', 'text-domain' ) ),
+			            'add_args'     => false,
+			            'add_fragment' => '',
+			        ) );
+
+			         if( $page_links ) {
+					     echo '<nav class="pag-nav"><ul>';
+					     foreach($page_links as $page_link ) {
+					          echo "<li>".$page_link."</li>";
+					     }
+					     echo '</ul></nav>';
+					 }
+
+
+
+			    ?>
+			    	</ul></nav>
+				</div>
+				<?php wp_reset_postdata();  
+
+			endif;
+
+ 
 			
-			
+			?>
+						
+ 
+ 	
 		
 		
 		</div>

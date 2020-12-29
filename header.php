@@ -360,12 +360,12 @@ wp_reset_postdata();
 					print '<div class="col left">';
 				}
 				
-				if($key == 3){
+				if($key == 4){
 					print '</div><div class="col mid">';
 				}
 				
-				if($key == 6){
-					print '</div><div class="col right">';
+				if($key == 7){
+					print '</div>';
 				}
 
 				print '<nav>';
@@ -384,6 +384,8 @@ wp_reset_postdata();
 			}
 				
 			?>
+
+			<div class="col right"></div>
 				
 		</div>
 		</div>
