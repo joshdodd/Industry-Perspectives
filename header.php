@@ -64,6 +64,8 @@ if(in_array($GLOBALS['templateName'], array('latest','about','galleries','contac
 <link href="<?=$GLOBALS['path']?>css/fonts/fonts.css" rel="stylesheet" type="text/css" />
 <link href="<?=$GLOBALS['path']?>css/icons.css" rel="stylesheet" type="text/css" />
 <link href="<?=$GLOBALS['path']?>style.css" rel="stylesheet" type="text/css" />
+<script src="https://kit.fontawesome.com/afd3e7451f.js" crossorigin="anonymous"></script>
+
 <?php print '<script type="text/javascript">var path = "' . $GLOBALS['path'] . '";var url = "' . $GLOBALS['url'] . '";var fullurl = "' . get_permalink() . '"</script>'; ?>
 
 <link rel="apple-touch-icon" sizes="57x57" href="<?=$GLOBALS['url']?>/wp-content/themes/Industry-Perspectives/images/favicon/apple-icon-57x57.png">
@@ -101,7 +103,7 @@ if(in_array($GLOBALS['templateName'], array('latest','about','galleries','contac
 
 
 
-
+<?php if(is_archive()){$GLOBALS['formattedName']='the-latest'; };?>
 <body id="page-<?=$GLOBALS['formattedName']?>"<?php if(!is_home()){print ' class="page-' . $GLOBALS['templateName'] . '"';} ?>>
 	
 	

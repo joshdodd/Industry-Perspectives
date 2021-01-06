@@ -258,6 +258,13 @@ wp_reset_postdata();
 							
 					// check if story was already used
 					if(!in_array($post->ID, $GLOBALS['shown_stories'])){
+
+						//get primary content type taxonomy
+						$content_types = get_post_primary_category($post->ID, 'content_type'); 
+						$content_type = $content_types['primary_category'];
+
+						$ct_name = $content_type->name;
+						$ct_link = get_term_link($content_type->term_id);
 					
 						// get full topic name
 						$field = get_field_object('field_579f7f6350d36');
@@ -285,6 +292,12 @@ wp_reset_postdata();
 						print '<div class="story-text">';
 						print '<time>' . $the_date . ' <span class="vline-div">|</span> ' . $topicFull . '</time>';
 						print '<h4><a href="' . get_permalink()  . '">' . get_the_title() . '</a></h4>';
+
+						if($ct_name){
+							print '<div class="ct-wrapper ct-wrap-small">
+								<a class="content-type-link ct-small" href="'.$ct_link.'"><i class="far fa-file-alt"></i>  '.$ct_name.'</a>
+							</div>';
+						}
 						
 						// get excerpt
 						if(get_field('before_body_text') != ''){

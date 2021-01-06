@@ -808,6 +808,7 @@ function content_type() {
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
+		'has-archive'				 => true
 	);
 	register_taxonomy( 'content_type', array( 'post' ), $args );
 
@@ -839,5 +840,45 @@ function codismo_table_column( $column, $post_id ) {
     }
  
 }
+
+
+function get_post_primary_category($post_id, $term='category', $return_all_categories=false){
+    $return = array();
+
+    if (class_exists('WPSEO_Primary_Term')){
+        // Show Primary category by Yoast if it is enabled & set
+        $wpseo_primary_term = new WPSEO_Primary_Term( $term, $post_id );
+        $primary_term = get_term($wpseo_primary_term->get_primary_term());
+
+        if (!is_wp_error($primary_term)){
+            $return['primary_category'] = $primary_term;
+        }
+    }
+
+    if (empty($return['primary_category']) || $return_all_categories){
+        $categories_list = get_the_terms($post_id, $term);
+
+        if (empty($return['primary_category']) && !empty($categories_list)){
+            $return['primary_category'] = $categories_list[0];  //get the first category
+        }
+        if ($return_all_categories){
+            $return['all_categories'] = array();
+
+            if (!empty($categories_list)){
+                foreach($categories_list as &$category){
+                    $return['all_categories'][] = $category->term_id;
+                }
+            }
+        }
+    }
+
+    return $return;
+}
+
+
+// Simply remove anything that looks like an archive title prefix ("Archive:", "Foo:", "Bar:").
+add_filter('get_the_archive_title', function ($title) {
+    return preg_replace('/^\w+: /', '', $title);
+});
 
 

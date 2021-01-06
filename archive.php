@@ -1,8 +1,5 @@
 <?php
-
-/*
-Template Name: Single Column Stories
-*/
+ 
 
 get_header(); 
 
@@ -14,7 +11,7 @@ get_header();
 <section id="tier-header" style="background-image: url(<?=$GLOBALS['path']?>images/header-bg-generic.jpg);">		
 	<div class="row">
 		
-	<h1><?php the_title(); ?></h1>
+	<h1 class="h1-small"><?php echo  single_term_title(); ?> Articles</h1>
 	
 	</div>		
 </section>
@@ -30,7 +27,7 @@ get_header();
 <section id="tier-stories">
 	<div class="contentContainer">
 		
-		<?php include('filters.php'); ?>
+		<?php  //include('filters.php'); ?>
 		
 		<div class="row spaced">
 
@@ -40,33 +37,26 @@ get_header();
 		
 		<div class="col left stories-grid">
 			
-			<?php		
+			<?php	
+
+			$taxonomy = get_queried_object();
 
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			
 			$perpage = 8;
-
-			$cat_id = $_GET['topic'];
-			
+ 
 			$args = array(
+				'tax_query' => array(
+			        array(
+			            'taxonomy' => $taxonomy->taxonomy,
+			            'field'    => 'term_id',
+			            'terms'    => $taxonomy->term_id,
+			        ),
+			    ),
 				'posts_per_page'	=> $perpage,
 				'paged' 			=> $paged,
-				'orderby'			=> 'meta_value',
-				'meta_key'			=> 'cfdate',
-				'cat'				=> $cat_id,
+ 
 			);
-			
-			// add categories to query
-			$in_cats = array();
-			$newqstring = '';
- 
-			
-			if(isset($_GET['order']) && $_GET['order'] == 'old'){
-				$args['order'] = 'ASC';
-			} else {
-				$args['order'] = 'DESC';
-			}
- 
  
 			$posts = new WP_Query( $args );
 
@@ -220,41 +210,11 @@ get_header();
 		<div class="col right ads">	
 			<?php					
 			
-			include('side-banners.php');			
+			 //include('side-banners.php');			
 			
 			?>	
 		</div>
-		
-		<!-- END AD SPOTS -->
-				
-		
-		
-		<!--! BEGIN SIDEBAR -->
-		<!--
-		<div class="col right sponsors">
-			
-			<div class="sponsor-logos">
-				<h4>Featured Sponsers</h4>
-				<div class="sponsor-grid">
-					
-					<?php
-						
-					$sponsors = get_field('sponsors');
-					
-					if(sizeof($sponsors)>1){
-						foreach($sponsors as $key=>$row){
-							print '<div class="sponsor-box"><a href="' . $row['link'] . '" target="_blank"><img src="' . $GLOBALS['path'] . 'images/sidesponsor-spacer.png" class="spacer"><div class="logo"><img src="' . $row['logo'] . '"></div></a></div>';
-						}
-					}
-						
-					?>
-					
-				</div>
-			</div>
-		</div>
-		-->
-		<!--! END SIDEBAR -->
-		
+ 
 		
 
 		</div>

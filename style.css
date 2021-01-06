@@ -2780,7 +2780,7 @@ video {
 }
 #article-container .article-header {
   padding: 1.5em 0;
-  border-top: 1px solid #000;
+  border-top: 1px solid #ddd;
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
@@ -2872,7 +2872,7 @@ video {
   line-height: 1em !important;
 }
 #article-container .article-contents {
-  padding-top: 45px;
+  padding-top: 15px;
 }
 #article-container .article-contents .col.left {
   width: 70%;
@@ -3167,6 +3167,7 @@ video {
   position: relative;
   min-height: 150px;
   border: none;
+  margin-top: 8px;
 }
 #page-the-latest #tier-stories .story-text,
 #page-expert-qas #tier-stories .story-text,
@@ -3176,7 +3177,7 @@ video {
   width: 70%;
   max-width: 750px;
   margin-left: 20px;
-  padding-top: 5px;
+  padding-top: 0px;
 }
 #page-the-latest #tier-stories .story-text h4,
 #page-expert-qas #tier-stories .story-text h4,
@@ -6614,6 +6615,80 @@ a img.aligncenter {
   margin: 0;
   padding: 0 4px 5px;
 }
+
+
+.tags-list{
+  width: 100%;
+  display: block;
+  padding:0px 0 0px 0;
+  font-style: italic;
+}
+
+.tags-list span{
+  display: inline-block;
+ 
+  font: 16px "Gotham-Light", sans-serif;
+  line-height: 60px;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  color: #231f20;
+  font-style: italic;
+}
+
+a.content-type-link{
+  
+  background-color: #CFE5F6;
+  border-radius: 3px;
+  
+  color: #144773 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  padding: 7px 10px;
+  font-weight: 900;
+}
+
+a.content-type-link i{
+  padding-right: 4px;
+}
+
+a.content-type-link:hover{
+  background-color: #7c4299;
+  background-color: #144773;
+  color: rgba(255, 255, 255, .75) !important;
+ 
+}
+
+a.content-type-link.ct-small{
+ 
+  font-size: 0.65rem;
+  padding: 5px 7px;
+  font-weight: 900;
+}
+
+
+
+.ct-wrapper{
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  margin-top: 0px;
+}
+
+.ct-wrapper.ct-list{
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.ct-wrapper.ct-wrap-small{
+  margin-bottom: 10px;
+  margin-top: -5px;
+}
+
+ #tier-header h1.h1-small{
+      font: 400 2.75em/1 "Gotham-Medium", sans-serif;
+    color: #fff;
+}
+
 
 
 
