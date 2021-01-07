@@ -6620,19 +6620,21 @@ a img.aligncenter {
 .tags-list{
   width: 100%;
   display: block;
-  padding:0px 0 0px 0;
+  padding:10px 0 10px 0;
   font-style: italic;
+
 }
 
 .tags-list span{
   display: inline-block;
  
   font: 16px "Gotham-Light", sans-serif;
-  line-height: 60px;
+ 
   text-transform: uppercase;
   letter-spacing: .01em;
   color: #231f20;
   font-style: italic;
+  line-height: 1.5;
 }
 
 a.content-type-link{

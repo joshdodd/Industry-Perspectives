@@ -65,7 +65,7 @@ $post_title = get_the_title();
 
  
 //get tags list
-$tags = get_tags();
+$tags = get_the_tags($post->ID);
 $html = '';
 foreach ( $tags as $tag ) {
     $tag_link = get_tag_link( $tag->term_id );
