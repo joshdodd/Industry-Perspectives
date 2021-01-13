@@ -1044,7 +1044,7 @@ video {
   display: inline-block;
   padding: 2em 0 2em;
   cursor: pointer;
-  margin-right: 4em;
+  margin-right: 2em;
 }
 #globalNav > nav li.hasSub {
   padding-right: .8em;
@@ -1053,7 +1053,7 @@ video {
   color: #309bd4;
 }
 #globalNav > nav a {
-  font: 400 1.25em "Gotham-Book", sans-serif;
+  font: 400 1.125em "Gotham-Book", sans-serif;
   color: #000;
   position: relative;
 }

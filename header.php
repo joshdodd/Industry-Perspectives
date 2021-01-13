@@ -304,7 +304,7 @@ wp_reset_postdata();
 				</ul>
 			</li>
 			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/education-training/">Education & Training</a></li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/research-whitepapers/">Research & Whitepapers</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/research-whitepapers/">Research</a></li>
 			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/product-solutions/">Product Solutions</a></li>
 			<li class="noSub"><a href="<?=$GLOBALS['url']?>webinars/">Events & Webinars</a></li>
 			<li class="noSub"><a href="<?=$GLOBALS['url']?>strategic-partner-spotlight/">Meet our Partners</a></li>
