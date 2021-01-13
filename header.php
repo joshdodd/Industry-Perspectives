@@ -303,10 +303,11 @@ wp_reset_postdata();
 
 				</ul>
 			</li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>the-latest/">The Latest</a></li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>events/">Events</a></li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>webinars/">Industry Webinars</a></li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>strategic-partner-spotlight/">Strategic Partners</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/education-training/">Education & Training</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/research-whitepapers/">Research & Whitepapers</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/product-solutions/">Product Solutions</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>webinars/">Events & Webinars</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>strategic-partner-spotlight/">Meet our Partners</a></li>
 			<!-- <li class="noSub"><a href="<?=$GLOBALS['url']?>covid-19/">COVID-19 Resources</a></li> -->
 
 			<!--<li class="noSub"><a href="<?=$GLOBALS['url']?>expert-qa/">Expert Q&As</a></li>
