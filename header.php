@@ -150,7 +150,7 @@ if(in_array($GLOBALS['templateName'], array('latest','about','galleries','contac
 					<li><a href="<?=$GLOBALS['url']?>about-us/">About Us</a></li>
 					<li><a href="<?=$GLOBALS['url']?>feedback/">Feedback</a></li>
 					<li><a href="http://www.apic.org" target="_blank">apic.org</a></li>
-					<li><a href="<?=$GLOBALS['url']?>understanding-research/">Research</a></li>
+					<!-- <li><a href="<?=$GLOBALS['url']?>understanding-research/">Research</a></li> -->
 				 
 				</ul>
 			</nav>
