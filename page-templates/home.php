@@ -47,6 +47,8 @@ get_header();
 			$field = get_field_object('field_579f7f6350d36');
 			$value = get_field('topic_id');
 			$topicFull = $field['choices'][$value];
+
+
 			
 			// get id number for colors
 			foreach($GLOBALS['sectionIDs'] as $key2=>$section){
@@ -286,6 +288,13 @@ if($welcome){
 					$field = get_field_object('field_579f7f6350d36');
 					$value = get_field('topic_id');
 					$topicFull = $field['choices'][$value];
+
+					//get primary content type taxonomy
+					$content_types = get_post_primary_category($post->ID, 'content_type'); 
+					$content_type = $content_types['primary_category'];
+
+					$ct_name = $content_type->name;
+					$ct_link = get_term_link($content_type->term_id);
 					
 					// get id number for colors
 					foreach($GLOBALS['sectionIDs'] as $key2=>$section){
@@ -315,6 +324,12 @@ if($welcome){
 					print '<img src="' . $GLOBALS['path'] . 'images/home-story-spacer.png" class="spacer">';
 					print '</div>';
 					print '<h4><a href="' . get_permalink()  . '">' . get_the_title() . '</a></h4>';
+
+					// if($ct_name){
+					// 		print '<div class="ct-wrapper ct-wrap-small">
+					// 			<a class="content-type-link ct-small" href="'.$ct_link.'"><i class="far fa-file-alt"></i>  '.$ct_name.'</a>
+					// 		</div>';
+					// 	}
 					
 					// get excerpt
 					if(get_field('before_body_text') != ''){

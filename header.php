@@ -64,6 +64,8 @@ if(in_array($GLOBALS['templateName'], array('latest','about','galleries','contac
 <link href="<?=$GLOBALS['path']?>css/fonts/fonts.css" rel="stylesheet" type="text/css" />
 <link href="<?=$GLOBALS['path']?>css/icons.css" rel="stylesheet" type="text/css" />
 <link href="<?=$GLOBALS['path']?>style.css" rel="stylesheet" type="text/css" />
+<script src="https://kit.fontawesome.com/afd3e7451f.js" crossorigin="anonymous"></script>
+
 <?php print '<script type="text/javascript">var path = "' . $GLOBALS['path'] . '";var url = "' . $GLOBALS['url'] . '";var fullurl = "' . get_permalink() . '"</script>'; ?>
 
 <link rel="apple-touch-icon" sizes="57x57" href="<?=$GLOBALS['url']?>/wp-content/themes/Industry-Perspectives/images/favicon/apple-icon-57x57.png">
@@ -101,7 +103,7 @@ if(in_array($GLOBALS['templateName'], array('latest','about','galleries','contac
 
 
 
-
+<?php if(is_archive()){$GLOBALS['formattedName']='the-latest'; };?>
 <body id="page-<?=$GLOBALS['formattedName']?>"<?php if(!is_home()){print ' class="page-' . $GLOBALS['templateName'] . '"';} ?>>
 	
 	
@@ -148,7 +150,7 @@ if(in_array($GLOBALS['templateName'], array('latest','about','galleries','contac
 					<li><a href="<?=$GLOBALS['url']?>about-us/">About Us</a></li>
 					<li><a href="<?=$GLOBALS['url']?>feedback/">Feedback</a></li>
 					<li><a href="http://www.apic.org" target="_blank">apic.org</a></li>
-					<li><a href="<?=$GLOBALS['url']?>understanding-research/">Research</a></li>
+					<!-- <li><a href="<?=$GLOBALS['url']?>understanding-research/">Research</a></li> -->
 				 
 				</ul>
 			</nav>
@@ -301,10 +303,11 @@ wp_reset_postdata();
 
 				</ul>
 			</li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>the-latest/">The Latest</a></li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>events/">Events</a></li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>webinars/">Industry Webinars</a></li>
-			<li class="noSub"><a href="<?=$GLOBALS['url']?>strategic-partner-spotlight/">Strategic Partners</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/education-training/">Education & Training</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/research-whitepapers/">Research</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>content_type/product-solutions/">Product Solutions</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>webinars/">Events & Webinars</a></li>
+			<li class="noSub"><a href="<?=$GLOBALS['url']?>strategic-partner-spotlight/">Meet our Partners</a></li>
 			<!-- <li class="noSub"><a href="<?=$GLOBALS['url']?>covid-19/">COVID-19 Resources</a></li> -->
 
 			<!--<li class="noSub"><a href="<?=$GLOBALS['url']?>expert-qa/">Expert Q&As</a></li>

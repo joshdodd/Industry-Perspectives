@@ -62,6 +62,28 @@ $sponsor_logo_alt = $sponsor_logo_arr['alt'];
 $sponsor_name = get_field('sponsor_name');
 $post_title = get_the_title();
 
+
+ 
+//get tags list
+$tags = get_the_tags($post->ID);
+$html = '';
+foreach ( $tags as $tag ) {
+    $tag_link = get_tag_link( $tag->term_id );
+             
+    $html .= "<a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>";
+    $html .= "{$tag->name}</a>, ";
+}
+$tag_html = trim($html,", ");
+
+//get primary content type taxonomy
+$content_types = get_post_primary_category($post->ID, 'content_type'); 
+$content_type = $content_types['primary_category'];
+
+$ct_name = $content_type->name;
+$ct_link = get_term_link($content_type->term_id);
+
+
+
 ?>
 
 
@@ -114,6 +136,11 @@ $post_title = get_the_title();
 		<!--<div class="article-photo-sponsor">
 			 
 		</div>-->
+		<?php if($ct_name){ ?>
+		<div class="ct-wrapper">
+			<a class="content-type-link" href="<?=$ct_link?>"><i class="far fa-file-alt"></i>  <?=$ct_name?></a>
+		</div>
+		<?php } ?>
 	</div>
 	
 	<div class="contentContainer">
@@ -148,8 +175,12 @@ $post_title = get_the_title();
 				<p>SHARE:</p>
 				<?php if ( function_exists( 'ADDTOANY_SHARE_SAVE_KIT' ) ) { ADDTOANY_SHARE_SAVE_KIT(); } ?>
 			</nav>
-		</div>
 			
+		</div>
+
+
+		
+		
 			
 			
 		<div class="row spaced article-contents">
@@ -214,6 +245,11 @@ $post_title = get_the_title();
  
 			
 			?>	
+
+			<div class="tags-list">
+				<span>TAGS:</span> 
+				<?php echo $tag_html; ?>
+			</div>
 
 			<h2>Download Content</h2>
 

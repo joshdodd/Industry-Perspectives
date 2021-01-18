@@ -22,7 +22,7 @@ get_header();
 	<!-- BEGIN CONTENT HEADER -->
 	
 	<header id="contentHeader">
-		<h1>News Center</h1>
+		<h1>News Centers</h1>
 		<div id="tier-header-icons">
 			<ul>
 				<li><a href="#"><span class="icon-envelope"></span></a></li>
