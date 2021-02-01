@@ -251,10 +251,14 @@ $ct_link = get_term_link($content_type->term_id);
 				<?php echo $tag_html; ?>
 			</div>
 
-			<h2>Download Content</h2>
+		 
+			<a class="dl-button" href="<?php echo $filedl ?>" target="_blank"><?php echo $dltext; ?></a>  
 
-			<div class="download-pdf">
-				<p>To download the <?php echo $dltype; ?>  file for ‘ <?php echo get_the_title(); ?>’, please provide us with your contact information below.</p>
+
+
+
+			<div class="download-pdf" >
+				<p>If you would like to be contacted by the sponsor for more information, please provide us with your contact information below.</p>
 			</div>
 
 
