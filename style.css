@@ -6693,7 +6693,9 @@ a.content-type-link.ct-small{
 
 .wp-video, video.wp-video-shortcode, .mejs-container, .mejs-overlay.load {
     width: 100% !important;
-    height: 100% !important;
+   /* height: 100% !important;*/
+
+   margin: 20px 0 20px 0;
 }
 .mejs-container {
     padding-top: 56.25%;
