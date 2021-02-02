@@ -223,8 +223,10 @@ $ct_link = get_term_link($content_type->term_id);
 
 				?>
 				
-				<!-- <a class="dl-button" href="<?php echo $site_url;?>/download-pdf"><?php echo $dltext; ?></a> -->
+				 
 
+
+				<a class="dl-button" href="<?php echo $filedl ?>" target="_blank"><?php echo $dltext; ?></a>  
 				<?php	
 
 			
@@ -237,7 +239,9 @@ $ct_link = get_term_link($content_type->term_id);
 					print '<a href="' . get_field('file_download') . '" target="_blank">Download PDF <span class="icon-angle-right"></span><a></p></div>';
 				}
 				*/
-			
+
+
+			 } 
 			
 
  
@@ -252,7 +256,7 @@ $ct_link = get_term_link($content_type->term_id);
 			</div>
 
 		 
-			<a class="dl-button" href="<?php echo $filedl ?>" target="_blank"><?php echo $dltext; ?></a>  
+			
 
 
 
@@ -267,7 +271,7 @@ $ct_link = get_term_link($content_type->term_id);
 
 			<!-- <a class="dl-button" href="<?php echo $filedl ?>" target="_blank"><?php echo $dltext; ?></a> -->
 
-		<?php } ?>
+		
 			
 
 		</div>
