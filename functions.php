@@ -620,23 +620,23 @@ function queryvar( $qvars )
 
 //Gravity From Display PDF File download
 
-add_action( 'gform_after_submission', 'redirect_to_download_link', 10, 2 );
+// add_action( 'gform_after_submission', 'redirect_to_download_link', 10, 2 );
 
-function redirect_to_download_link( $entry, $form ) {
+// function redirect_to_download_link( $entry, $form ) {
 
-	if($form['title']=="Lead Generation"){
+// 	if($form['title']=="Lead Generation"){
 
  
-	 	$download_url = rgar( $entry, '14'); //This is the ID of the download file url in gravity forms
+// 	 	$download_url = rgar( $entry, '14'); //This is the ID of the download file url in gravity forms
 	 
-	 	echo "<script type=\"text/javascript\">	
-	    window.open('$download_url');
-	    </script>";
+// 	 	echo "<script type=\"text/javascript\">	
+// 	    window.open('$download_url');
+// 	    </script>";
 
-	    echo '<a class="view-dl-file" href="' . $download_url . '"> View Content </a> ';
-	}
+// 	    echo '<a class="view-dl-file" href="' . $download_url . '"> View Content </a> ';
+// 	}
  
-}
+// }
 
 
 
